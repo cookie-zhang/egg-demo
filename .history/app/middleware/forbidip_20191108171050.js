@@ -1,0 +1,24 @@
+'use strict';
+
+// 模拟在某个ip下多次请求抓取数据
+module.exports = (options, app) => {
+  // 返回一个一步的方法
+  return async function forbidip(ctx, next) {
+    // 要屏蔽的ip： 1.去数据库取  2.从参数传入
+
+    const forbidip = '192.168.0.188'; // 例如这是要屏蔽的ip
+
+    // 获取客户端的ip
+    console.log('111222333');
+    
+    console.log(app);
+    // eslint-disable-next-line eqeqeq
+    if (forbidip == ctx.request.ip) {
+      ctx.status = 403;
+      ctx.body = '您的ip已经被封';
+    } else {
+      await next();
+    }
+
+  };
+};
