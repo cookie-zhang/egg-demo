@@ -1,0 +1,4 @@
+'use strict'；
+module.exports = () => {
+
+}
